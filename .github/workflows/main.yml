@@ -38,6 +38,10 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+      with:
+        repository: 'boostorg/boost'
+        submodules: true
+    - uses: actions/checkout@v2
     - name: Install (Linux)
       if: runner.os == 'Linux'
       run: |
@@ -68,6 +72,13 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         sudo apt-get install build-essential checkinstall libboost-system-dev libboost-python-dev libboost-chrono-dev libboost-random-dev libssl-dev
+    - name: ls home
+      run: |
+        ls ~
+    - name: Build boost
+      working-directory: ./boost/boost
+      run: |
+        bootstrap.sh
     - name: Configure
       if: runner.os == 'Linux'
       continue-on-error: true
