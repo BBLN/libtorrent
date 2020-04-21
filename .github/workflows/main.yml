@@ -45,6 +45,7 @@ jobs:
         repository: 'boostorg/boost'
         submodules: true
         path: "${{ github.workspace }}/boost"
+        ref: tag/boost-1.69.0
     - name: Build b2
       working-directory: ${{ github.workspace }}/boost
       run: |
@@ -87,6 +88,8 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         ${{ github.workspace }}/boost/b2 toolset=gcc-aarch64 target-os=android
+        echo Done!
+        ls -la
 #    - name: Configure
 #      if: runner.os == 'Linux'
 #      continue-on-error: true
