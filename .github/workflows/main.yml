@@ -68,6 +68,7 @@ jobs:
         sudo apt-get install build-essential checkinstall libboost-system-dev libboost-python-dev libboost-chrono-dev libboost-random-dev libssl-dev
     - name: Configure
       if: runner.os == 'Linux'
+      continue-on-error: true
       run: |
         ./autotool.sh
         ./configure --disable-debug --enable-encryption --with-boost-libdir=/usr/lib/aarch64-linux-gnu --with-libiconv CXXFLAGS="-std=c++14"
