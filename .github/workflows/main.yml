@@ -20,14 +20,14 @@ jobs:
         # Github Actions requires a single row to be added to the build matrix.
         # See https://help.github.com/en/articles/workflow-syntax-for-github-actions.
         name: [
-          ubuntu-18.04-gcc-aarch64-linux-gnu,
+          ubuntu-18.04-gcc-7-aarch64-linux-gnu,
         ]
         
         include:
           - name: ubuntu-18.04-gcc-aarch64-linux-gnu
             os: ubuntu-18.04
             compiler: gcc
-            version: "aarch64-linux-gnu"
+            version: "7-aarch64-linux-gnu"
 
 
 
