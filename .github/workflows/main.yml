@@ -75,9 +75,6 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         sudo apt-get install build-essential checkinstall libboost-system-dev libboost-python-dev libboost-chrono-dev libboost-random-dev libssl-dev
-    - name: user-config.jam
-      run: |
-        echo "using gcc : aarch64 : aarch64-linux-gnu-g++-7 ;" >> ~/user-config.jam
     - name: Build b2
       working-directory: ${{ github.workspace }}/boost
       run: |
@@ -85,8 +82,9 @@ jobs:
         ls -la .
         file b2
         file tools/build/src/engine/b2
-        ./b2
-        ./tools/build/src/engine/b2
+    - name: user-config.jam
+      run: |
+        echo "using gcc : aarch64 : aarch64-linux-gnu-g++-7 ;" >> ~/user-config.jam
     - name: b2
       if: runner.os == 'Linux'
       run: |
