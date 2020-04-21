@@ -82,6 +82,11 @@ jobs:
       working-directory: ${{ github.workspace }}/boost
       run: |
         bash bootstrap.sh
+        ls -la .
+        file b2
+        file tools/build/src/engine/b2
+        ./b2
+        ./tools/build/src/engine/b2
     - name: b2
       if: runner.os == 'Linux'
       run: |
