@@ -37,12 +37,14 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+    - name: Checkout boost
+      uses: actions/checkout@v2
       with:
         repository: 'boostorg/boost'
         submodules: true
-        path: "${{ GITHUB_WORKSPACE }}/boost"
-    - uses: actions/checkout@v2
+        path: "$GITHUB_WORKSPACE/boost"
+    - name: Checkout self
+       uses: actions/checkout@v2
     - name: Install (Linux)
       if: runner.os == 'Linux'
       run: |
@@ -77,7 +79,7 @@ jobs:
       run: |
         ls ~
     - name: Build boost
-      working-directory: "${{ GITHUB_WORKSPACE }}/boost"
+      working-directory: "$GITHUB_WORKSPACE/boost"
       run: |
         bootstrap.sh
     - name: Configure
