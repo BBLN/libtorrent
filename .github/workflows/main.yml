@@ -28,6 +28,8 @@ jobs:
             os: ubuntu-18.04
             compiler: gcc
             version: "7-aarch64-linux-gnu"
+            cc: "aarch64-linux-gnu-gcc-7"
+            cxx: "aarch64-linux-gnu-g++-7"
 
 
 
@@ -55,8 +57,8 @@ jobs:
         sudo apt-get install -y ninja-build valgrind libc6-dbg:i386
         if [ "${{ matrix.compiler }}" = "gcc" ]; then
         sudo apt-get install -y g++-${{ matrix.version }}
-        echo "::set-env name=CC::gcc-${{ matrix.version }}"
-        echo "::set-env name=CXX::g++-${{ matrix.version }}"
+        echo "::set-env name=CC::${{ matrix.cc }}"
+        echo "::set-env name=CXX::${{ matrix.cxx }}"
         else
         sudo apt-get install -y clang-${{ matrix.version }} g++-multilib
         echo "::set-env name=CC::clang-${{ matrix.version }}"
