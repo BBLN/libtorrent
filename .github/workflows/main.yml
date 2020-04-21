@@ -45,7 +45,7 @@ jobs:
         repository: 'boostorg/boost'
         submodules: true
         path: "${{ github.workspace }}/boost"
-        ref: tag/boost-1.69.0
+        ref: tags/boost-1.69.0
     - name: Build b2
       working-directory: ${{ github.workspace }}/boost
       run: |
