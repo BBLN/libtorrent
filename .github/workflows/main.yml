@@ -75,29 +75,28 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         sudo apt-get install build-essential checkinstall libboost-system-dev libboost-python-dev libboost-chrono-dev libboost-random-dev libssl-dev
-    - name: ls home
+    - name: user-config.jam
       run: |
-        ls ~
-    - name: ls workspace
-      working-directory: ${{ github.workspace }}
-      run: |
-        ls
-    - name: Build boost
+        echo "using gcc : aarch64 : aarch64-linux-gnu-g++-7 ;" >> ~/user-config.jam
+    - name: Build b2
       working-directory: ${{ github.workspace }}/boost
       run: |
-        ls
         bash bootstrap.sh
-    - name: Configure
-      if: runner.os == 'Linux'
-      continue-on-error: true
-      run: |
-        ./autotool.sh
-        ./configure --host=aarch64-linux --build=x86_64 --disable-debug --enable-encryption --with-boost-libdir=/usr/lib/aarch64-linux-gnu --with-libiconv CXXFLAGS="-std=c++14"
-    - uses: actions/upload-artifact@v1
-      with:
-        name: Upload config.log
-        path: config.log
-    - name: Make
+    - name: b2
       if: runner.os == 'Linux'
       run: |
-        make -j80
+        ${{ github.workspace }}/boost/b2 toolset=gcc-aarch64 target-os=android
+#    - name: Configure
+#      if: runner.os == 'Linux'
+#      continue-on-error: true
+#      run: |
+#        ./autotool.sh
+#        ./configure --host=aarch64-linux --build=x86_64 --disable-debug --enable-encryption --with-boost-libdir=/usr/lib/aarch64-linux-gnu --with-libiconv CXXFLAGS="-std=c++14"
+#    - uses: actions/upload-artifact@v1
+#      with:
+#        name: Upload config.log
+#        path: config.log
+#    - name: Make
+#      if: runner.os == 'Linux'
+#      run: |
+#        make -j80
