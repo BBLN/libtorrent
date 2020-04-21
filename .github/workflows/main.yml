@@ -78,6 +78,10 @@ jobs:
     - name: ls home
       run: |
         ls ~
+    - name: ls workspace
+      working-directory: ${{ github.workspace }}
+      run: |
+        ls
     - name: Build boost
       working-directory: ${{ github.workspace }}/boost
       run: |
