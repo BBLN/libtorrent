@@ -49,9 +49,7 @@ jobs:
       working-directory: ${{ github.workspace }}/boost
       run: |
         bash bootstrap.sh
-        ls -la .
-        file b2
-        file tools/build/src/engine/b2
+        echo "::set-env name=BOOST_ROOT::${{ github.workspace }}/boost"
     - name: Install (Linux)
       if: runner.os == 'Linux'
       run: |
