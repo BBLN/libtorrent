@@ -44,7 +44,7 @@ jobs:
         submodules: true
         path: "$GITHUB_WORKSPACE/boost"
     - name: Checkout self
-       uses: actions/checkout@v2
+      uses: actions/checkout@v2
     - name: Install (Linux)
       if: runner.os == 'Linux'
       run: |
