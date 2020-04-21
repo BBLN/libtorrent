@@ -45,6 +45,13 @@ jobs:
         repository: 'boostorg/boost'
         submodules: true
         path: "${{ github.workspace }}/boost"
+    - name: Build b2
+      working-directory: ${{ github.workspace }}/boost
+      run: |
+        bash bootstrap.sh
+        ls -la .
+        file b2
+        file tools/build/src/engine/b2
     - name: Install (Linux)
       if: runner.os == 'Linux'
       run: |
@@ -75,13 +82,6 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         sudo apt-get install build-essential checkinstall libboost-system-dev libboost-python-dev libboost-chrono-dev libboost-random-dev libssl-dev
-    - name: Build b2
-      working-directory: ${{ github.workspace }}/boost
-      run: |
-        bash bootstrap.sh
-        ls -la .
-        file b2
-        file tools/build/src/engine/b2
     - name: user-config.jam
       run: |
         echo "using gcc : aarch64 : aarch64-linux-gnu-g++-7 ;" >> ~/user-config.jam
