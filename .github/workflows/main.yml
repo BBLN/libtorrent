@@ -24,7 +24,7 @@ jobs:
         ]
         
         include:
-          - name: ubuntu-18.04-gcc-aarch64-linux-gnu
+          - name: ubuntu-18.04-gcc-7-aarch64-linux-gnu
             os: ubuntu-18.04
             compiler: gcc
             version: "7-aarch64-linux-gnu"
