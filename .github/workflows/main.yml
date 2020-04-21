@@ -42,7 +42,7 @@ jobs:
       with:
         repository: 'boostorg/boost'
         submodules: true
-        path: "$GITHUB_WORKSPACE/boost"
+        path: "${{ github.workspace }}/boost"
     - name: Checkout self
       uses: actions/checkout@v2
     - name: Install (Linux)
@@ -79,9 +79,10 @@ jobs:
       run: |
         ls ~
     - name: Build boost
-      working-directory: "$GITHUB_WORKSPACE/boost"
+      working-directory: ${{ github.workspace }}/boost
       run: |
-        bootstrap.sh
+        ls
+        bash bootstrap.sh
     - name: Configure
       if: runner.os == 'Linux'
       continue-on-error: true
