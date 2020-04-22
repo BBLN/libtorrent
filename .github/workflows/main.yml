@@ -90,6 +90,10 @@ jobs:
         ${{ github.workspace }}/boost/b2 toolset=gcc-aarch64 target-os=android
         echo Done!
         ls -la
+    - uses: actions/upload-artifact@v1
+      with:
+        name: Upload build
+        path: bin/gcc-aarch64/debug/target-os-android/threading-multi/libtorrent.so.1.2.6
 #    - name: Configure
 #      if: runner.os == 'Linux'
 #      continue-on-error: true
